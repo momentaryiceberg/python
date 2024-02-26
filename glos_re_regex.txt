@@ -1,0 +1,171 @@
+import re
+
+# 1. Basics of Regular Expressions
+
+# Simple match
+pattern = r"apple"
+text = "I love apples"
+match_result = re.match(pattern, text)
+print("Simple Match:", match_result.group() if match_result else "No match")
+
+# Case-insensitive match
+pattern_case_insensitive = r"apple"
+text_case_insensitive = "I love Apple"
+match_result_case_insensitive = re.match(pattern_case_insensitive, text_case_insensitive, re.IGNORECASE)
+print("Case-insensitive Match:", match_result_case_insensitive.group() if match_result_case_insensitive else "No match")
+
+# 2. Character Classes
+
+# Match any digit
+pattern_digit = r"\d"
+text_digit = "123abc"
+match_digit = re.search(pattern_digit, text_digit)
+print("Match Digit:", match_digit.group() if match_digit else "No match")
+
+# Match any non-digit
+pattern_non_digit = r"\D"
+text_non_digit = "123abc"
+match_non_digit = re.search(pattern_non_digit, text_non_digit)
+print("Match Non-Digit:", match_non_digit.group() if match_non_digit else "No match")
+
+# Match any word character
+pattern_word_char = r"\w"
+text_word_char = "Hello123"
+match_word_char = re.search(pattern_word_char, text_word_char)
+print("Match Word Character:", match_word_char.group() if match_word_char else "No match")
+
+# Match any non-word character
+pattern_non_word_char = r"\W"
+text_non_word_char = "Hello123!"
+match_non_word_char = re.search(pattern_non_word_char, text_non_word_char)
+print("Match Non-Word Character:", match_non_word_char.group() if match_non_word_char else "No match")
+
+# 3. Quantifiers
+
+# Match zero or more occurrences
+pattern_zero_or_more = r"a*"
+text_zero_or_more = "aaab"
+match_zero_or_more = re.search(pattern_zero_or_more, text_zero_or_more)
+print("Zero or More Occurrences:", match_zero_or_more.group() if match_zero_or_more else "No match")
+
+# Match one or more occurrences
+pattern_one_or_more = r"a+"
+text_one_or_more = "aaab"
+match_one_or_more = re.search(pattern_one_or_more, text_one_or_more)
+print("One or More Occurrences:", match_one_or_more.group() if match_one_or_more else "No match")
+
+# Match zero or one occurrence
+pattern_zero_or_one = r"a?"
+text_zero_or_one = "aaab"
+match_zero_or_one = re.search(pattern_zero_or_one, text_zero_or_one)
+print("Zero or One Occurrence:", match_zero_or_one.group() if match_zero_or_one else "No match")
+
+# Match exactly n occurrences
+pattern_exactly_n = r"a{2}"
+text_exactly_n = "aaab"
+match_exactly_n = re.search(pattern_exactly_n, text_exactly_n)
+print("Exactly n Occurrences:", match_exactly_n.group() if match_exactly_n else "No match")
+
+# Match n or more occurrences
+pattern_n_or_more = r"a{2,}"
+text_n_or_more = "aaab"
+match_n_or_more = re.search(pattern_n_or_more, text_n_or_more)
+print("n or More Occurrences:", match_n_or_more.group() if match_n_or_more else "No match")
+
+# Match between m and n occurrences
+pattern_between_m_n = r"a{2,3}"
+text_between_m_n = "aaab"
+match_between_m_n = re.search(pattern_between_m_n, text_between_m_n)
+print("Between m and n Occurrences:", match_between_m_n.group() if match_between_m_n else "No match")
+
+# 4. Character Sets and Ranges
+
+# Match any character in a set
+pattern_char_set = r"[aeiou]"
+text_char_set = "apple"
+match_char_set = re.search(pattern_char_set, text_char_set)
+print("Match Character Set:", match_char_set.group() if match_char_set else "No match")
+
+# Match any character in a range
+pattern_char_range = r"[a-z]"
+text_char_range = "hello"
+match_char_range = re.search(pattern_char_range, text_char_range)
+print("Match Character Range:", match_char_range.group() if match_char_range else "No match")
+
+# 5. Anchors
+
+# Match at the beginning of a string
+pattern_start = r"^Hello"
+text_start = "Hello, World!"
+match_start = re.search(pattern_start, text_start)
+print("Match at the Beginning:", match_start.group() if match_start else "No match")
+
+# Match at the end of a string
+pattern_end = r"World!$"
+text_end = "Hello, World!"
+match_end = re.search(pattern_end, text_end)
+print("Match at the End:", match_end.group() if match_end else "No match")
+
+# 6. Groups and Capture
+
+# Group and capture parts of a pattern
+pattern_group = r"(\d{3})-(\d{2})-(\d{4})"
+text_group = "Date: 123-45-6789"
+match_group = re.search(pattern_group, text_group)
+if match_group:
+    print("Group 1:", match_group.group(1))
+    print("Group 2:", match_group.group(2))
+    print("Group 3:", match_group.group(3))
+
+# 7. Lookahead and Lookbehind
+
+# Positive lookahead
+pattern_lookahead = r"\d+(?=\syears)"
+text_lookahead = "25 years old"
+match_lookahead = re.search(pattern_lookahead, text_lookahead)
+print("Positive Lookahead:", match_lookahead.group() if match_lookahead else "No match")
+
+# Negative lookahead
+pattern_negative_lookahead = r"\d+(?!\syears)"
+text_negative_lookahead = "25 years old"
+match_negative_lookahead = re.search(pattern_negative_lookahead, text_negative_lookahead)
+print("Negative Lookahead:", match_negative_lookahead.group() if match_negative_lookahead else "No match")
+
+# Positive lookbehind
+pattern_lookbehind = r"(?<=\$)\d+"
+text_lookbehind = "Price: $100"
+match_lookbehind = re.search(pattern_lookbehind, text_lookbehind)
+print("Positive Lookbehind:", match_lookbehind.group() if match_lookbehind else "No match")
+
+# Negative lookbehind
+pattern_negative_lookbehind = r"(?<!\$)\d+"
+text_negative_lookbehind = "Price: $100"
+match_negative_lookbehind = re.search(pattern_negative_lookbehind, text_negative_lookbehind)
+print("Negative Lookbehind:", match_negative_lookbehind.group() if match_negative_lookbehind else "No match")
+
+# 8. Flags
+
+# Case-insensitive matching
+pattern_flag_case_insensitive = r"apple"
+text_flag_case_insensitive = "I love Apple"
+match_flag_case_insensitive = re.search(pattern_flag_case_insensitive, text_flag_case_insensitive, re.IGNORECASE)
+print("Case-insensitive Match with Flag:", match_flag_case_insensitive.group() if match_flag_case_insensitive else "No match")
+
+# 9. Miscellaneous
+
+# Find all matches in a string
+all_matches = re.findall(r"\b\w{3}\b", "The quick brown fox")
+print("All Matches:", all_matches)
+
+# Replace matches in a string
+text_replace = "I love cats and dogs."
+pattern_replace = r"cats"
+replacement_text = "rabbits"
+new_text = re.sub(pattern_replace, replacement_text, text_replace)
+print("After Replacement:", new_text)
+
+# Split a string based on a pattern
+text_split = "apple,orange,banana"
+pattern_split = r","
+split_result = re.split(pattern_split, text_split)
+print("Split Result:", split_result)

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        code {
+            white-space: pre-line;
+        }
+    </style>
+    <title>Regex Cheatsheet</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<h3>Basic Syntax:</h3>
+<ol>
+    <li>"<b>import re</b>" to import the regex module.</li>
+    <li>"<b>re.compile(pattern)</b>" to compile a regex pattern.</li>
+    <li>"<b>re.match(pattern, string)</b>" to match a pattern at the beginning of a string.</li>
+    <li>"<b>re.search(pattern, string)</b>" to search for a pattern anywhere in a string.</li>
+    <li>"<b>re.findall(pattern, string)</b>" to find all occurrences of a pattern in a string.</li>
+    <li>"<b>re.sub(pattern, replacement, string)</b>" to substitute a pattern with a replacement in a string.</li>
+</ol>
+<h3>Special Characters:</h3>
+<ul>
+    <li>.: Matches any single character except newline.</li>
+    <li>^: Matches the start of a string.</li>
+    <li>$: Matches the end of a string.</li>
+    <li>*: Matches 0 or more occurrences of the preceding character.</li>
+    <li>+: Matches 1 or more occurrences of the preceding character.</li>
+    <li>?: Matches 0 or 1 occurrence of the preceding character.</li>
+    <li>[]: Matches any single character within the brackets.</li>
+    <li>|: Matches either the pattern before or after the pipe.</li>
+    <li>(): Groups patterns together.</li>
+</ul>
+<h3>Character Classes:</h3>
+<ul>
+    <li>\d: Matches any digit (0-9).</li>
+    <li>\D: Matches any non-digit character.</li>
+    <li>\w: Matches any alphanumeric character (word character).</li>
+    <li>\W: Matches any non-alphanumeric character.</li>
+    <li>\s: Matches any whitespace character.</li>
+    <li>\S: Matches any non-whitespace character.</li>
+</ul>
+<h3>Quantifiers:</h3>
+<ul>
+    <li>{n}: Matches exactly n occurrences of the preceding character.</li>
+    <li>{n,}: Matches n or more occurrences of the preceding character.</li>
+    <li>{n,m}: Matches between n and m occurrences of the preceding character.</li>
+</ul>
+<h3>Anchors:</h3>
+<ul>
+    <li>\b: Matches a word boundary.</li>
+    <li>\B: Matches a non-word boundary.</li>
+    <li>^: Matches the start of a string.</li>
+    <li>$: Matches the end of a string.</li>
+</ul>
+
+<h3>Flags:</h3>
+<ul>
+    <li>re.IGNORECASE or re.I: Case-insensitive matching.</li>
+    <li>re.MULTILINE or re.M: Multiline matching.</li>
+    <li>re.DOTALL or re.S: Dot matches all, including newline.</li>
+    <li>re.VERBOSE or re.X: Verbose mode (allows comments and whitespace).</li>
+</ul>
+
+
+<h3>Examples:</h3>
+<p>Match a word:</p>
+<code>
+    pattern = r'\bword\b'
+    re.findall(pattern, 'This is a word.')
+</code>
+
+
+<p>Match an email:</p>
+<code>
+    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+    re.findall(pattern, 'My email is example@example.com')
+</code>
+
+<p>Replace a word:</p>
+<code>
+    pattern = r'\bword\b'
+    replacement = 'new_word'
+    re.sub(pattern, replacement, 'This is a word.')
+</code>
+
+
+<p>Match a date:</p>
+<code>
+    pattern = r'\b\d{4}-\d{2}-\d{2}\b'
+    re.findall(pattern, 'The date is 2022-01-01')
+</code>
+
+<p>Match a phone number:</p>
+<code>
+    pattern = r'\b\d{3}-\d{3}-\d{4}\b'
+    re.findall(pattern, 'My phone number is 123-456-7890')
+</code>
+
+Remember to use raw strings (r'...') for regex patterns to avoid issues with backslashes. Also, practice using online regex testers like regex101.com to test your patterns.
