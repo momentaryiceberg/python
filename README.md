@@ -1,2 +1,2 @@
 # Haugur
-# Hálfflokkað frá gömlu tölvunni
+## Hálfflokkað frá gömlu tölvunni
